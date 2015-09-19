@@ -60,5 +60,5 @@ corr <- function(directory, threshold = 0) {
         
 
     print(corrlist)
-## rm(nobsfram, pollutiondata, pollutiondatacc, cid, corrlist, cr, file, file_list, good, ids, idstocor, threshold)  
+
 }
