@@ -50,34 +50,34 @@ rankhospital <- function(state, outcome, num = "best") {
     outcomedataforstatermmv <- outcomedataforstate[!rowswithmissingvalues, ]
     
     
-    ## Unfinished below, try to make if statements for each condition to order the table appropriately
-    attach(outcomedataforstatermmv)
+    ## Order the table based on the outcome requested in the argument "outcome"
     
     if (outcome == "heart attack") {
-        outcomeranked <- outcomedataforstatermmv[order(Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, Hospital.Name), ]
+        outcomeranked <- outcomedataforstatermmv[order(outcomedataforstatermmv$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, outcomedataforstatermmv$Hospital.Name), ]
     }
     
     if (outcome == "heart failure") {
-        outcomeranked <- outcomedataforstatermmv[order(Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure, Hospital.Name), ]
+        outcomeranked <- outcomedataforstatermmv[order(outcomedataforstatermmv$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure, outcomedataforstatermmv$Hospital.Name), ]
     }
     
     if (outcome == "pneumonia") {
-        outcomeranked <- outcomedataforstatermmv[order(Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia, Hospital.Name), ]
+        outcomeranked <- outcomedataforstatermmv[order(outcomedataforstatermmv$Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia, outcomedataforstatermmv$Hospital.Name), ]
     }
     
-    detach(outcomedataforstatermmv)
+    ## Print the result requested in the argument "num"
     
     if (class(num) != "character") {
-        print(outcomeranked$Hospital.Name[num])
+        Ans <- (outcomeranked$Hospital.Name[num])
     }
     
     if (num == "best") {
-        print(outcomeranked$Hospital.Name[1])        
+        Ans <- (outcomeranked$Hospital.Name[1])        
     }
         
     if (num == "worst") {
-        print(tail(outcomeranked$Hospital.Name, n = 1))        
+        Ans <- (tail(outcomeranked$Hospital.Name, n = 1))        
     }
     
+    print(Ans)
     
 }
